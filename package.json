@@ -1,0 +1,25 @@
+{
+  "name": "gamesAPI",
+  "version": "1.0.0",
+  "description": "This is the API to serve the snake app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaphaelHebert/gamesAPI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaphaelHebert/gamesAPI/issues"
+  },
+  "homepage": "https://github.com/RaphaelHebert/gamesAPI#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
