@@ -19,7 +19,10 @@
   },
   "homepage": "https://github.com/RaphaelHebert/gamesAPI#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^8.10.0",
     "express": "^4.17.3",
+    "helmet": "^5.0.2",
     "nodemon": "^2.0.15"
   }
 }
