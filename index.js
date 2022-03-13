@@ -6,8 +6,9 @@ const server = express()
 
 
 
-const userRoutes = require("./users/userRouter")
-
+const userRoutes = require("./api/users/router")
+const scoresRoutes = require("./api/scores/router")
+const authRouter = require("./api/auth/router")
 
 const PORT = 8000
 
@@ -17,18 +18,15 @@ const mockData = {
     email: "joe010@gmail.com"
 }
 
-
+server.use(express.json())
 server.use("/users", userRoutes)
+server.use("/scores", scoresRoutes)
+server.use("/auth/", authRouter)
 
-server.get("/", (req, res) => {
-    // const body = req.body
-    // const url = req.baseUrl
-    res.status(200).json(mockData)
+server.use("*", (req, res) => {
+    res.status(404).send("Oops.. 404 Page not found");
 })
 
-server.use(function(req, res) {
-    res.status(404).send("404 Page not found");
-  });
 
 
 server.use((err, req, res, next) => {
