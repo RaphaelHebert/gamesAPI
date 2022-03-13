@@ -29,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.15",
     "nodemon": "^2.0.15",
+    "postgresql": "0.0.1",
     "sqlite3": "^5.0.2"
   }
 }
