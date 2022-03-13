@@ -26,21 +26,22 @@ module.exports = {
     }
   },
 
-  // staging: {
-  //   client: 'pg',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'games'
-  //   }
-  // },
+  staging: {
+    client: 'pg',
+    connection: {
+      database: process.env.POSTGRES_DB,
+      user:     process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'games'
+    }
+  },
+
   production: {
     client: 'pg',
     debug: true,
@@ -54,6 +55,7 @@ module.exports = {
       directory: './data/migrations' 
     },
     ssl: {
+      require: true,
       rejectUnauthorized: false
     }
   }
