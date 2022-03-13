@@ -32,13 +32,4 @@ router.get('/:id', async (req, res,next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
-    try {
-        await addUser(req.body)
-        res.status(200).json(`${req.body.username} has been added to the db`)
-    } catch(err) {
-        next(err)
-    }
-})
-
 module.exports = (router)

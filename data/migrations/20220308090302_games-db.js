@@ -26,7 +26,6 @@ exports.up = function(knex) {
             tbl.increments('score-id')
                 .primary();
             tbl.timestamp('created_at')
-                .notNullable()
                 .defaultTo(knex.fn.now());
             tbl.integer('score')
                 .unsigned()

@@ -37,8 +37,8 @@ router.get('/:name/topTen', async (req, res,next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const {score, UserId, gameId} = req.body
-        await newScore(score, UserId, gameId)
+        const {score, userId, gameId} = req.body
+        await newScore(score, userId, gameId)
         res.status(200).json(`hello from scores POST`)
     } catch(err) {
         next(err)

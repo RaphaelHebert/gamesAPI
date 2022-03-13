@@ -19,7 +19,7 @@ const topTen = (game) => {
 }
 
 const newScore = (score, userId, gameId) => {
-    return db("scores").insert({score: score, "user-id": userId, "game-id": gameId })
+    return db("scores").insert({score: parseInt(score), "user-id": parseInt(userId), "game-id": parseInt(gameId)})
 }
 
 module.exports = {

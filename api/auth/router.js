@@ -37,7 +37,7 @@ router.post('/signUp', async (req, res, next) => {
         const newUser = await addUser(user)
         if(newUser){
             res.status(200).json({
-                message: `${newUser} just signed up!`,
+                message: `${username} just signed up!`,
             })
         } else {
             res.status(401).json({ message: `Oops.. something went wrong. Maybe ${username} or ${email} already used`})
