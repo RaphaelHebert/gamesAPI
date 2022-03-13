@@ -3,9 +3,21 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+require('dotenv').config()
+const pg = require('pg')
+
+if (process.env.DATABASE_URL) {
+  pg.defaults.ssl = { rejectUnauthorized: false }
+}
+
+const sharedConfig = {
+  migrations: { directory: './data/migrations' },
+  seeds: { directory: './data/seeds' },
+}
 
 module.exports = {
   development: {
+    ...sharedConfig,
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
@@ -18,40 +30,11 @@ module.exports = {
         conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
       },
     },
-    migrations: {
-      directory: './data/migrations'
-    },
-    seeds: {
-      directory: './data/seeds'
-    }
   },
-
-  staging: {
-    client: 'pg',
-    connection: {
-      database: process.env.POSTGRES_DB,
-      user:     process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'games'
-    }
-  },
-
   production: {
+    ...sharedConfig,
     client: 'pg',
     connection: process.env.DATABASE_URL,
-    migrations: {
-      tableName: 'games',
-      directory: './data/migrations' 
-    },
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
+    pool: { min: 2, max: 10 },
   }
 };
