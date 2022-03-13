@@ -15,6 +15,8 @@ const authRouter = require("./api/auth/router")
 const { PORT } = require('./configs/server')
 
 server.use(express.json())
+server.use(helmet())
+server.use(cors())
 
 server.use("/users", userRoutes)
 server.use("/scores", scoresRoutes)
@@ -24,14 +26,10 @@ server.use("*", (req, res) => {
     res.status(404).send("Oops.. 404 Page not found");
 })
 
-
-
 server.use((err, req, res, next) => {
-    console.error(err);
-
     res
       .status(500)
-      .json({ message: 'There was an error performing the required operation' });
+      .json({ message: `There was an error performing the required operation: \n ${err.message}` });
   });
   
 

@@ -35,7 +35,6 @@ router.get('/:name/topTen', async (req, res,next) => {
     }
 })
 
-// add middleware to get the user id and check user is logged in
 router.post('/', async (req, res, next) => {
     try {
         const {score, UserId, gameId} = req.body

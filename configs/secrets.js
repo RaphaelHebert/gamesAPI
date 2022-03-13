@@ -1,4 +1,4 @@
-const jwtsecret = process.env.JWT_SECRET || "@SecretForDevs098"
+const jwtsecret = process.env.SECRET_KEY
 
 module.exports = {
     jwtsecret
