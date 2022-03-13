@@ -26,23 +26,23 @@ module.exports = {
     }
   },
 
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'games'
-    }
-  },
+  // staging: {
+  //   client: 'pg',
+  //   connection: {
+  //     database: 'my_db',
+  //     user:     'username',
+  //     password: 'password'
+  //   },
+  //   pool: {
+  //     min: 2,
+  //     max: 10
+  //   },
+  //   migrations: {
+  //     tableName: 'games'
+  //   }
+  // },
   production: {
-    client: 'postgresql',
+    client: 'pg',
     debug: true,
     connection: process.env.DATABASE_URL,
     pool: {
@@ -53,6 +53,8 @@ module.exports = {
       tableName: 'games',
       directory: './data/migrations' 
     },
-    ssl: true
+    ssl: {
+      rejectUnauthorized: false
+    }
   }
 };
