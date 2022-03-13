@@ -6,6 +6,19 @@ const router = express.Router()
 
 const { topTen, userScores, newScore} = require('./models')
 
+router.get('/topTen/:name', async (req, res,next) => {
+    try{
+        const { name } = req.params
+        const top = await topTen(name)
+        if(top.length > 0){
+            res.status(200).json(top)
+        } else {
+            res.status(404).json({ message: `No score available for this ${name}`})
+        }
+    } catch(err) {
+        next(err)
+    }
+})
 
 router.get('/:game/:id', isLoggedIn, async (req, res, next) => {
     try {
@@ -21,21 +34,7 @@ router.get('/:game/:id', isLoggedIn, async (req, res, next) => {
     }
 })
 
-router.get('/:name/topTen', async (req, res,next) => {
-    try{
-        const { name } = req.params
-        const top = await topTen(name)
-        if(top.length > 0){
-            res.status(200).json(top)
-        } else {
-            res.status(404).json({ message: `No score available for this ${name}`})
-        }
-    } catch(err) {
-        next(err)
-    }
-})
-
-router.post('/', async (req, res, next) => {
+router.post('/', isLoggedIn, async (req, res, next) => {
     try {
         const {score, userId, gameId} = req.body
         await newScore(score, userId, gameId)
