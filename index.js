@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
@@ -9,16 +11,11 @@ const server = express()
 const userRoutes = require("./api/users/router")
 const scoresRoutes = require("./api/scores/router")
 const authRouter = require("./api/auth/router")
-
-const PORT = 8000
-
-
-const mockData = {
-    userName: "joe",
-    email: "joe010@gmail.com"
-}
+ 
+const { PORT } = require('./configs/server')
 
 server.use(express.json())
+
 server.use("/users", userRoutes)
 server.use("/scores", scoresRoutes)
 server.use("/auth/", authRouter)

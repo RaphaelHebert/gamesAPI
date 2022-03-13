@@ -1,11 +1,13 @@
 const express = require('express')
+const { isLoggedIn } = require("../middlewares")
+
 
 const router = express.Router()
 
 const { topTen, userScores, newScore} = require('./models')
 
 
-router.get('/:game/:id', async (req, res, next) => {
+router.get('/:game/:id', isLoggedIn, async (req, res, next) => {
     try {
         const { id, game } = req.params
         const scores = await userScores(id, game)
