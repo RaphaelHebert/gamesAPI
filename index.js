@@ -20,7 +20,7 @@ server.use(cors())
 
 server.use("/users", userRoutes)
 server.use("/scores", scoresRoutes)
-server.use("/auth/", authRouter)
+server.use("/auth", authRouter)
 
 server.use("*", (req, res) => {
     res.status(404).send("Oops.. 404 Page not found");
