@@ -12,7 +12,7 @@ const userScores = (id, game) => {
 const topTen = (game) => {
     return db('scores as s')
         .join('games as g', 's.game-id', 'g.game-id')
-        .select('s.score')
+        .select('s.score', 's.username')
         .where({'g.game_name': game})
         .orderBy('score')
         .limit(10)
